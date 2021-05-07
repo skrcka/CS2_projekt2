@@ -1,0 +1,17 @@
+﻿@using DenRozeWeb.Models;
+@{
+    ViewData["Title"] = "My orders";
+}
+<div class="text-center">
+    <h2>My orders)</h2>
+</div>
+<ul class="list-group">
+    @foreach (OrderModel o in ViewBag.Orders)
+    {
+        <a href="@Url.Action("OrderDetail", "Home", new { id = o.OID })">
+            <li class="list-group-item">
+                @o.OID.ToString() @o.Created_at.ToString() @o.Edited_at.ToString() @o.Note
+            </li>
+        </a>
+    }
+</ul>

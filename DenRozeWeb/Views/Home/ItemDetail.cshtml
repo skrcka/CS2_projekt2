@@ -1,0 +1,11 @@
+﻿@using DenRozeWeb.Models;
+@{
+    ItemModel i = ViewBag.Item as ItemModel;
+    ViewData["Title"] = "Item detail " + @i.IID;
+}
+
+<h2>@i.Name</h2>
+<p>Code: @i.Code</p>
+<p>Price: @i.Price Kc</p>
+<p>Count in stock: @i.Count</p>
+<a href="@Url.Action("AddToBasket", "Home", new { id = i.IID })" class="btn btn-primary">Add to cart</a>

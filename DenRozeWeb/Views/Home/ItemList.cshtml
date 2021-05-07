@@ -1,0 +1,28 @@
+﻿@using DenRozeWeb.Models;
+@{
+    ViewData["Title"] = "Items";
+}
+<div class="text-center">
+    <h1>Items</h1>
+
+    @using (Html.BeginForm("ItemList", "Home", FormMethod.Post, new { @class = "form-inline mb-6" }))
+    {
+        <input type="text" name="Search" id="Search" class="form-control col-6" placeholder="Search" />
+        <input type="submit" value="Filter" class="btn btn-primary col" />
+    }
+</div>
+
+<div class="row">
+    @foreach (ItemModel i in ViewBag.Items)
+    {
+        <div class='col'>
+            <div class="card" style="width: 18rem;">
+                <div class="card-body">
+                    <a href="@Url.Action("ItemDetail", "Home", new { id = i.IID })"><h5 class="card-title">@i.Name</h5></a>
+                    <p class="card-text">@decimal.Round(i.Price, 2) Kc</p>
+                    <a href="@Url.Action("AddToBasket", "Home", new { id = i.IID })" class="btn btn-primary">Add to cart</a>
+                </div>
+            </div>
+        </div>
+    }
+</div>

@@ -1,0 +1,18 @@
+﻿@using DenRozeWeb.Models;
+@{
+    OrderDetailModel orm = ViewBag.Order as OrderDetailModel;
+    ViewData["Title"] = "Order detail " + @orm.Order.OID.ToString();
+}
+<div class="text-center">
+    <h2>Detail for order: @orm.Order.OID.ToString()</h2>
+</div>
+<p>Note: @orm.Order.Note</p>
+<p>Created at: @orm.Order.Created_at.ToString()</p>
+
+<h3>Items</h3>
+<ol class="list-group">
+@for (int i=0; i < orm.BillItems.Count; i++)
+{
+    <li class="list-group-item"><a href="@Url.Action("ItemDetail", "Home", new { id = @orm.Items[i].IID })">@orm.Items[i].Name.ToString() (@decimal.Round(orm.Items[i].Price,2) Kc) x @orm.BillItems[i].Count.ToString()</li>
+}
+</ol>
